@@ -20,14 +20,26 @@ app.get("/", function (req, res) {
 
 
 // your first API endpoint... 
-app.get("/api/now", (req, res, next) => {
-  req.time = new Date().toString();
-  next();
-},
-  (req,res) => {
-	  res.json({time: req.time})
- }
-);
+app.get("/api/:date?", (req, res, next) => {
+  let { date } = req.params.date;
+
+  if (!date) {
+     now = new Date();
+    return res.json({
+      unix: now.getTime(),
+      utc: now.toUTCString(),
+    });
+  }
+
+  if (!isNaN(date) && /^\d+$/.test(date)) {
+    date = parseInt(date);
+    }
+
+    res.json({
+      unix: parsedDate.getTime(),
+      utc: parsedDate.toUTCString(),
+    });
+  });
 
 
 
