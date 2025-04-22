@@ -21,7 +21,9 @@ app.get("/", function (req, res) {
 
 // your first API endpoint... 
 app.get("/api/:date?", (req, res, next) => {
-  let { date } = req.params.date;
+  let date;
+  
+  date  = req.params.Date;
 
   if (!date) {
      now = new Date();
